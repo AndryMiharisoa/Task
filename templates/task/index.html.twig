@@ -1,20 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TaskController!{% endblock %}
+{% block title %}Todo List{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/App_Task/src/Controller/TaskController.php'|file_link(0) }}">src/Controller/TaskController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/App_Task/templates/task/index.html.twig'|file_link(0) }}">templates/task/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <!-- Card pour le tableau -->
+        <div class="col-8 sm-8 mt-5"style="margin-left:400px;">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h4 class="mb-0">Liste des taches</h4>
+                </div>
+        
+                    <div class="card-body">
+                        <div class="text-end mb-3">
+                            <a href="{{ path('todo_new') }}" class="btn btn-success">
+                                <i class="fas fa-plus"></i> Ajouter un Tache
+                            </a>
+                        </div>
+
+                    <!-- Table responsive -->
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Titre</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Date de création</th>
+                                    <th scope="col">Complété</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for todo in todos %}
+                                    <tr>
+                                        <td>{{ todo.title }}</td>
+                                        <td>{{ todo.description|length > 30 ? todo.description|slice(0, 30) ~ '...' : todo.description }}</td>
+                                        <td>{{ todo.createdAt ? todo.createdAt|date('d/m/Y H:i') : '' }}</td>
+                                        <td>{{ todo.isCompleted ? 'Oui' : 'Non' }}</td>
+                                        <td>
+                                            {# <a href="{{ path('todo_show', {'id': todo.id}) }}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i> Voir
+                                            </a> #}
+                                            <a href="{{ path('todo_edit', {'id': todo.id}) }}" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-edit"></i> 
+                                            </a>
+                                            <form method="post" action="{{ path('todo_delete', {'id': todo.id}) }}" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce Todo ?');">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ todo.id) }}">
+                                                <button class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash"></i> 
+                                                </button>
+                                            </form> 
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5" class="text-center">Aucun Todo trouvé</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 {% endblock %}

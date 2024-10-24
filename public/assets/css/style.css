@@ -1,0 +1,15 @@
+.badge-anime{
+    transition: 2s;
+    box-shadow: 0 0 1px gray;
+}
+.badge-anime:hover{
+    box-shadow: 0 0 8px gray;
+    transition: 2s;
+}
+.imgAnime{
+    transition: 0.3s;
+}
+.imgAnime:hover{
+    transition: 0.3s;
+    transform: scale(1.075);
+} 

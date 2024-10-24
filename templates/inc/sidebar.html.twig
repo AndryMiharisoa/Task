@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+    </script>
+    {% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('assets/css/sidbar.css') }}">
+	{% endblock %}
+    </head>
+    <body >
+   
+    <div class="page">
+        <div class="sidebar" style="background-color:#f7f7f7;">
+            <div class="sidebar-header">
+				<div class="image-text">
+				
+				<div class="text header-text">
+					<span class="name"><strong>Application</strong></span>
+				
+				</div>
+			</div>
+            </div>
+            <div class="sidebar-body mt-5">
+                <ul class="navigation-list">
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="">
+                            <div class="row">
+                                <div class="col-2 icon">
+                                    <i class="fa fa-grip-horizontal"></i>
+                                </div>
+                                <div class="col-9">
+                                    liste de tache
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fa fa-list-alt"></i>
+                                </div>
+                                <div class="col-9">
+                                    Historique
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="navigation-list-item">
+                        <a class="navigation-link" href="">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="col-9">
+                                    Utilisateur
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>        
+    </div>
+  </body>
+
+
+</html>

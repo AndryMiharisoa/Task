@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        *{
+            font-family: 'Poppins', sans-serif;
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ::-webkit-scrollbar {
+            display:none;
+        }
+
+        body {
+            background-color: #e6e6e6;
+        }
+        .page .sidebar{
+            background: #FFF;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .page .content{
+            margin-left: 250px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebarToggle {
+			top: 50%;
+			left: 75px;
+			transform: translateY(-50%) rotate(180deg);
+			height: 25px;
+			width: 25px;
+			background: #E10007;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50%;
+			color: var(--sidebar-color);
+			font-size: 22px;
+			transition: all 0.3s ease;
+        }
+
+        .sidebarToggle.active {
+            margin-left: 10px;
+        }
+
+        .sidebarToggle:hover{
+            color: white;
+        }
+
+        .page .content .container{
+            margin: 30px;
+            background: #fff;
+            padding: 50px;
+            line-height: 28px;
+        }
+
+        body.active .page .sidebar{
+            width: 88px;
+        }
+
+        body.active .page .content{
+            margin-left: 0;
+            width: 100%;
+        }
+        .sidebar-header {
+            padding: 10px 25px 10px 15px;
+        }
+        .sidebar-logo-container {
+            background-color: rgb(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding-left: 3px;
+            display: flex;
+        }
+
+        .logo-container {
+            max-width: 40px;
+            background-color: rgb(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin: 8px;
+            padding: 6px 8px;
+        }
+
+        .brand-name-container {
+            display: flex;
+			flex-direction: column;
+        }
+
+        .logo-sidebar {
+            width: 100%;
+            height: auto;
+        }
+
+        .brand-name {
+            color: #707070;
+           	font-weight: 600;
+        }
+        .brand-subname {
+           margin-top: -2px;
+        }
+        .navigation-list {
+            list-style-type:none;
+            padding: 0px 18px;
+            margin-top: 10px;
+        }
+        .navigation-list-item {
+            padding: 9px 14px 9px 21px;
+            margin: 15px 0px;
+            border-radius: 8px;
+            
+        }
+        .navigation-list-item:hover {
+            background: #E10007;
+            box-shadow: 0 0 0.4em rgb(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+        .navigation-list-item.active {
+            background: #E10007;
+            box-shadow: 0 0 0.4em rgb(255, 255, 255, 0.1);
+        }
+        .navigation-link {
+            color: rgb(31, 40, 51, 0.8);
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .navigation-link i {
+            font-size: 18px;
+        }
+        .navigation-list-item:hover .navigation-link {
+            color: rgb(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+        .navigation-list-item.active .navigation-link {
+            color: rgb(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .sidebar .image{
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sidebar .image-text img{
+            width: 50px;
+            border-radius: 6px;
+        }
+        .sidebar-header .image-text{
+            display: flex;
+            align-items: center;
+        }
+        .sidebar-header .image-text .header-text{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header-text .name{
+            font-weight: 600;
+        }
+
+        .sidebar-header-text .profession{
+            margin-top: -2px;
+        }

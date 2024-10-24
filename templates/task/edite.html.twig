@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Todo{% endblock %}
+
+{% block body %}
+    <h1>Modifier le Todo</h1>
+
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.createdAt) }}
+            {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.createdAt) }}
+        </div>
+
+        <div class="mb-3 form-check">
+            {{ form_widget(form.isCompleted, {'attr': {'class': 'form-check-input'}}) }}
+            {{ form_label(form.isCompleted, null, {'attr': {'class': 'form-check-label'}}) }}
+            {{ form_errors(form.isCompleted) }}
+        </div>
+
+        <button class="btn btn-warning"><i class="fas fa-save"></i> Mettre à jour</button>
+    {{ form_end(form) }}
+{% endblock %}

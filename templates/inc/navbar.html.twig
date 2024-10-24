@@ -1,0 +1,45 @@
+<head>
+	<meta charset="UTF-8">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    {% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('assets/css/menunav.css') }}">
+	{% endblock %}
+</head>
+<body>
+<div class="wrapper">
+		<div class="navbar" style="background-color:#f7f7f7;">
+            <div class="logo">
+                <a></a>
+            </div>
+			<div class="nav_right">
+				<ul>
+					<li class="nr_li dd_main">
+                        <i class="fa fa-bars" style="width: 35px"></i>
+                        <div class="dd_menu">
+                            <div class="dd_left">
+                                <ul>
+                                   
+                                    <li><i class="fa fa-sign-out-alt"></i></li>
+                                </ul>
+                            </div>
+                            <div class="dd_right">
+                                <ul>
+                                    <li><a href="">Déconnexion</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var dd_main = document.querySelector(".dd_main");
+
+	dd_main.addEventListener("click", function(){
+		this.classList.toggle("active");
+	})
+</script>
+	
+</body>
