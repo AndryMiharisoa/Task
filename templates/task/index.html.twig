@@ -3,14 +3,37 @@
 {% block title %}Todo List{% endblock %}
 
 {% block body %}
+<style>
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    padding: 11px;
+    margin-top:5px;
+    margin:2px;
+    width:100px;
 
+   
+  }
+  .dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    padding: 11px;
+    margin-top:5px;
+    margin:2px;
+    width:280px;
+  }
+</style>
 
     <!-- Card pour le tableau -->
         <div class="col-8 sm-8 mt-5"style="margin-left:400px;">
             <div class="card shadow-sm">
-                <div class="card-header">
-                    <h4 class="mb-0">Liste des taches</h4>
-                </div>
+                  <div class="card-header bg-primary text-white text-center">
+        <h4>Liste des Todos</h4>
+    </div>
         
                     <div class="card-body">
                         <div class="text-end mb-3">
@@ -20,15 +43,15 @@
                         </div>
 
                     <!-- Table responsive -->
-                    <div class="table-responsive">
-                        <table class="table table-striped">
+                    <div class="table-responsive"> 
+                        <table id="todoTable" class="table table-striped ">
                             <thead>
                                 <tr>
-                                    <th scope="col">Titre</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Date de création</th>
-                                    <th scope="col">Complété</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col" style="background-color:#c5ceef;">Titre</th>
+                                    <th scope="col" style="background-color:#c5ceef;">Description</th>
+                                    <th scope="col" style="background-color:#c5ceef;">Date de création</th>
+                                    <th scope="col" style="background-color:#c5ceef;">Complété</th>
+                                    <th scope="col" style="background-color:#c5ceef;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,3 +87,26 @@
                 </div>
             </div>
 {% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('#todoTable').DataTable({
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ enregistrements par page",
+                    "zeroRecords": "Rien trouvé - désolé",
+                    "info": "Affichage de la page _PAGE_ sur _PAGES_",
+                    "infoEmpty": "Aucun enregistrement disponible",
+                    "infoFiltered": "(filtré à partir de _MAX_ enregistrements totaux)",
+                    "search": "Rechercher :",
+                    "paginate": {
+                        "previous": "Précédent",
+                        "next": "Suivant"
+                    }
+                },
+                "pagingType": "simple_numbers",
+                "responsive": true
+            });
+        });
+    </script>
+{% endblock %}
+
