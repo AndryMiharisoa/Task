@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TodoRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: TodoRepository::class)]
 class Todo
@@ -24,7 +24,18 @@ class Todo
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column]
-    private ?bool $isCompleted = null;
+    private ?bool $isCompleted = false;
+
+    #[ORM\ManyToOne(inversedBy: 'todos')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null; // Relation avec User
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime(); // Initialiser la date de création
+    }
+
+    // Getters et Setters
 
     public function getId(): ?int
     {
@@ -39,7 +50,6 @@ class Todo
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -51,7 +61,6 @@ class Todo
     public function setDescription(?string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -60,14 +69,7 @@ class Todo
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function isIsCompleted(): ?bool
+    public function isCompleted(): ?bool
     {
         return $this->isCompleted;
     }
@@ -75,7 +77,17 @@ class Todo
     public function setIsCompleted(bool $isCompleted): static
     {
         $this->isCompleted = $isCompleted;
+        return $this;
+    }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
         return $this;
     }
 }

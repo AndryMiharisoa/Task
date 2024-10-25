@@ -1,34 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Todo List{% endblock %}
-
+ 
 {% block body %}
-<style>
-  .dataTables_wrapper .dataTables_length select {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 5px;
-    background-color: transparent;
-    padding: 11px;
-    margin-top:5px;
-    margin:2px;
-    width:100px;
+            {{include('inc/sidebar.html.twig')}}
+            {{include('inc/navbar.html.twig')}}
 
-   
-  }
-  .dataTables_wrapper .dataTables_filter input {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 5px;
-    background-color: transparent;
-    padding: 11px;
-    margin-top:5px;
-    margin:2px;
-    width:280px;
-  }
-</style>
-
-    <!-- Card pour le tableau -->
         <div class="col-8 sm-8 mt-5"style="margin-left:400px;">
             <div class="card shadow-sm">
                   <div class="card-header bg-primary text-white text-center">
@@ -78,7 +55,7 @@
                                     </tr>
                                 {% else %}
                                     <tr>
-                                        <td colspan="5" class="text-center">Aucun Todo trouvé</td>
+                                        <td colspan="5" class="text-center">Aucun</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -86,6 +63,7 @@
                     </div>
                 </div>
             </div>
+          
 {% endblock %}
 {% block javascripts %}
     <script>

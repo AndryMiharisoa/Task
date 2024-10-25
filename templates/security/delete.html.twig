@@ -1,0 +1,24 @@
+{# templates/security/delete.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}supression{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">supression</h1>
+
+        <div class="card" style="width: 50%; margin: auto;">
+            <div class="card-body">
+                <h5 class="text-center"> voullez vous supprimer?<strong>{{ user.email }}</strong>?</h5>
+                
+                <form action="{{ path('app_user_delete', { id: user.id }) }}" method="post" class="mt-4">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <div class="text-center">
+                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                        <a href="{{ path('app_user_list') }}" class="btn btn-secondary">Annuler</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

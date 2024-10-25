@@ -91,3 +91,25 @@
 .navbar .dd_main.active .dd_menu{
     display: flex;
 }
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+
+    background-color: transparent;
+    padding: 11px;
+    margin-top:5px;
+    margin:2px;
+    width:100px;
+
+   
+  }
+  .dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+
+    background-color: transparent;
+    padding: 11px;
+    margin-top:5px;
+    margin:2px;
+    width:200px;
+  }

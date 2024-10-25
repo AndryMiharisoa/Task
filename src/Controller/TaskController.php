@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Todo;
 use App\Form\TodoType;
+use Symfony\Component\Security\Core\User\UserInterface;
 use App\Repository\TodoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,49 +30,49 @@ class TaskController extends AbstractController
         $form = $this->createForm(TodoType::class, $todo);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $todo->setCreatedAt(new \DateTime()); // Set the current date and time
-            $entityManager->persist($todo);
-            $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $todo->setCreatedAt(new \DateTime()); // Set the current date and time
+                $entityManager->persist($todo);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('app_task', [], Response::HTTP_SEE_OTHER);
-        }
+                return $this->redirectToRoute('app_task', [], Response::HTTP_SEE_OTHER);
+            }
 
-        return $this->render('task/add.html.twig', [
+            return $this->render('task/add.html.twig', [
             'todo' => $todo,
             'form' => $form->createView(),
         ]);
-}
-#[Route('/{id}/edit', name: 'todo_edit', methods: ['GET', 'POST'])]
-public function edite(Request $request, Todo $todo, EntityManagerInterface $entityManager): Response
-{
-    $form = $this->createForm(TodoType::class, $todo);
-    $form->handleRequest($request);
-
-    if ($form->isSubmitted() && $form->isValid()) {
-        $entityManager->flush();
-
-        $this->addFlash('success', 'Le Todo a été mis à jour avec succès.');
-
-        return $this->redirectToRoute('app_task');
     }
 
-    return $this->render('task/edite.html.twig', [
-        'todo' => $todo,
-        'form' => $form->createView(),
-    ]);
+    #[Route('/{id}/edit', name: 'todo_edit', methods: ['GET', 'POST'])]
+    public function edite(Request $request, Todo $todo, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(TodoType::class, $todo);
+        $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
+
+                $this->addFlash('success', 'Le Todo a été mis à jour avec succès.');
+
+                return $this->redirectToRoute('app_task');
+            }
+            return $this->render('task/edite.html.twig', [ // Assurez-vous que le fichier Twig est correct
+                'todo' => $todo,
+                'form' => $form->createView(),
+            ]);
 }
 
-#[Route('/{id}', name: 'todo_delete', methods: ['POST'])]
-public function delete(Request $request, Todo $todo, EntityManagerInterface $entityManager): RedirectResponse
-{
-    if ($this->isCsrfTokenValid('delete'.$todo->getId(), $request->request->get('_token'))) {
-        $entityManager->remove($todo);
-        $entityManager->flush();
+    #[Route('/{id}', name: 'todo_delete', methods: ['POST'])]
+    public function delete(Request $request, Todo $todo, EntityManagerInterface $entityManager): RedirectResponse
+    {
+            if ($this->isCsrfTokenValid('delete'.$todo->getId(), $request->request->get('_token'))) {
+                $entityManager->remove($todo);
+                $entityManager->flush();
 
-        $this->addFlash('success', 'Le Todo a été supprimé avec succès.');
-    }
+                $this->addFlash('success', 'Le Todo a été supprimé avec succès.');
+            }
 
     return $this->redirectToRoute('app_task');
-}
+    }
 }
