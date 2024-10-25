@@ -27,9 +27,7 @@ class SecurityController extends AbstractController
         #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // Obtenir l'erreur de connexion s'il y en a une
         $error = $authenticationUtils->getLastAuthenticationError();
-        // Dernier nom d'utilisateur saisi par l'utilisateur
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
@@ -52,9 +50,9 @@ class SecurityController extends AbstractController
                            $form->handleRequest($request);
 
                             if ($form->isSubmitted() && $form->isValid()) {
-                                $entityManager->flush(); // Enregistrer les modifications
+                                $entityManager->flush(); 
 
-                                return $this->redirectToRoute('app_user_list'); // Redirection vers la liste des utilisateurs
+                                return $this->redirectToRoute('app_user_list'); 
                             }
 
                     return $this->render('security/edit.html.twig', [
@@ -66,27 +64,19 @@ class SecurityController extends AbstractController
     #[Route('/user/delete/{id}', name: 'app_user_delete')]
     public function delete(int $id, Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Récupérer l'utilisateur par son ID
         $user = $entityManager->getRepository(User::class)->find($id);
+            if (!$user) {
+                throw $this->createNotFoundException('User not found');
+            }
+                if ($request->isMethod('POST')) {
+                    $entityManager->remove($user);
+                    $entityManager->flush();
 
-        // Vérifier si l'utilisateur existe
-        if (!$user) {
-            throw $this->createNotFoundException('User not found');
-        }
+                    return $this->redirectToRoute('app_user_list');
+                }
 
-        // Vérifiez que la requête est une soumission POST
-        if ($request->isMethod('POST')) {
-            // Supprimer l'utilisateur de la base de données
-            $entityManager->remove($user);
-            $entityManager->flush();
-
-            // Rediriger vers la liste des utilisateurs
-            return $this->redirectToRoute('app_user_list');
-        }
-
-        // Rendre le template de confirmation de suppression
-        return $this->render('security/delete.html.twig', [
-            'user' => $user,
+            return $this->render('security/delete.html.twig', [
+                'user' => $user,
         ]);
     }
 
